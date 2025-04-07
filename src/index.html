@@ -23,6 +23,7 @@
 
   <table border="1" cellspacing="0" cellpadding="8">
     <thead>
+      <!--First row (section titles)-->
       <tr>
         <th>Endpoints</th>
         <th>Method</th>
@@ -31,6 +32,7 @@
       </tr>
     </thead>
     <tbody>
+      <!--Second row-->
       <tr>
         <td>/extensions</td>
         <td>GET</td>
@@ -55,6 +57,8 @@
         </td>
         <td>Downloads the Extensions Metadata File for Viewing</td>
       </tr>
+
+      <!--Second row-->
       <tr>
         <td>/extensions/{id}/versions/{version_id}</td>
         <td>GET</td>
@@ -66,6 +70,8 @@
         </td>
         <td>Get a specific version of the extension files and its dependencies. Returned in a zip file like above.</td>
       </tr>
+
+      <!--Third row-->
       <tr>
         <td>/user/{user_id}/extensions</td>
         <td>POST</td>
