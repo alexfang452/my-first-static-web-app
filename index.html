@@ -6,6 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
   <title>Alex's Vanilla JavaScript App</title>
+
+  <style>
+    table
+    {
+      width: 80%;
+    }
+  </style>
 </head>
 
 <body>
@@ -14,47 +21,104 @@
   </main>
   <h2>Team 2's Web Service API</h2>
 
-  <div class = "container">
-      <div class = "image">
-        <img src="/images/DownloadExtension.png"
-        width = "400px" height="400px"/>
-      </div>
-  </div>
+  <table border="1" cellspacing="0" cellpadding="8">
+    <thead>
+      <tr>
+        <th>Endpoints</th>
+        <th>Method</th>
+        <th>Output</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>/extensions</td>
+        <td>GET</td>
+        <td>
+          <strong>Returns a Metadata file structured like this:</strong>
+          {
+          "version": "0.12",
+          "components": [
+          {
+          "component": {
+          "id": "string",
+          "uploader_id": "string",
+          "name": "string",
+          "description": "string",
+          "versions": [],
+          "flagged": "boolean",
+          "flag_reason": "string"
+        }
+      }
+    ]
+  }
+        </td>
+        <td>Downloads the Extensions Metadata File for Viewing</td>
+      </tr>
+      <tr>
+        <td>/extensions/{id}/versions/{version_id}</td>
+        <td>GET</td>
+        <td>
+        Abc123-v3-files.zip/
+        ,Metadata.txt
+        ,Extension/
+        ,Dependencies/
+        </td>
+        <td>Get a specific version of the extension files and its dependencies. Returned in a zip file like above.</td>
+      </tr>
+      <tr>
+        <td>/user/{user_id}/extensions</td>
+        <td>POST</td>
+        <td>
+          {
+          "ExtensionVersion": {
+          "ExtensionID": "abc123",
+          "NewVersion": {
+          "VersionID": "v2.01",
+          "Status": "Success",
+          "Message": "New extension created successfully"
+        }
+      }
+    }
+        </td>
+        <td>Allows User to submit a new extension to the Registry.</td>
+      </tr>
 
-  <div class = "container">
-    <div class = "image">
-      <img src="images/FlagExtension.png"
-      width = "400px" height="400px"/>
-    </div>
-</div>
+      <!--Fifth Row-->
+      <tr>
+        <td>/user/{user_id}/extensions/{id}/version</td>
+        <td>POST</td>
+        <td>
+        {
+        "ExtensionVersion": {
+        "ExtensionID": "abc123",
+        "NewVersion": {
+        "VersionID": "v2.01",
+        "Status": "Success",
+        "Message": "New version created successfully"
+        }
+      }
+    }
+        </td>
+        <td>Allows User to submit a new version of an existing extension to the Registry.</td>
+      </tr>
 
-<div class = "container">
-  <div class = "image">
-    <img src="images/GetMasterfile.png"
-    width = "400px" height="400px"/>
-  </div>
-</div>
+      <!--Sixth Row-->
+      <tr>
+        <td>/admin/extensions/{id}/version/{version_id}/flag</td>
+        <td>POST</td>
+        <td>204 NO CONTENT</td>
+        <td>Allows User to Flag an Extension for Review.</td>
+      </tr>
 
-  <div class = "container">
-    <div class = "image">
-      <img src="images/ReviewExtension.png"
-      width = "400px" height="400px"/>
-    </div>
-</div>
-
-<div class = "container">
-  <div class = "image">
-    <img src="images/UploadExtension,UploadVersion.png"
-    width = "400px" height="400px"/>
-  </div>
-</div>
-
-  <div class = "container">
-    <div class = "image">
-      <img src="images/UploadExtension.png"
-      width = "400px" height="400px"/>
-    </div>
-  </div>
+      <!--Seventh Row-->
+      <tr>
+        <td>/admin/extensions/{id}/version/{version_id}/review</td>
+        <td>POST</td>
+        <td>204 NO CONTENT</td>
+        <td>Reviewers can review an Extension version, approve or deny it, and leave comments on it.</td>
+      </tr>
+    </tbody>
+  </table>
 </body>
-
 </html>
